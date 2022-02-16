@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:include="fragments/head"></th:block>
+<body style="background-image: url('https://thumbs.dreamstime.com/b/greek-food-background-traditional-different-greek-dishes-set-greek-food-background-traditional-different-greek-dishes-set-top-view-178761927.jpg');
+
+            background-size:100% 100vh;">
+<th:block th:include="fragments/navbar"></th:block>
+<div class="container py-5">
+    <div class="row text-center text-white mb-5">
+        <div class="col-lg-7 mx-auto">
+            <h1 class="display-4">Restaurants</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <form th:action="@{/order/create}" th:method="post">
+            <ul class="list-group shadow" th:each="dish : ${dishes}" th:object="${dish}">
+                <div onclick="this.querySelector('input[type=checkbox]').click()">
+                    <input type="checkbox" style="pointer-events:none" th:value="${dish.id}" name="id">
+                    <li class="list-group-item" id="myCheck">
+                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="media-body order-2 order-lg-1">
+                                <h5 class="mt-0 font-weight-bold mb-2" th:text="${dish.name}"></h5>
+                                <p class="font-italic text-muted mb-0 small" th:text="${dish.description}" ></p>
+                                <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2" th:text="${dish.url}"></h6>
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                        <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                        <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                        <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                        <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+                                    </ul>
+                                </div>
+                            </div><img src="https://i.imgur.com/2ZZfFQb.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                        </div>
+                    </li>
+                </div>
+                </a>
+            </ul>
+                <div class="row justify-content-center">
+                    <button class="btn btn-dark btn-lg px-5" type="submit">Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

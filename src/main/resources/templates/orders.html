@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:include="fragments/head"></th:block>
+<body style="background-image: url('https://thumbs.dreamstime.com/b/greek-food-background-traditional-different-greek-dishes-set-greek-food-background-traditional-different-greek-dishes-set-top-view-178761927.jpg');
+            background-repeat:no-repeat;
+            background-size:100% 100vh;">
+<th:block th:include="fragments/navbar"></th:block>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="text-center mb-4">All Orders</h4>
+                <form th:action="@{/search}" th:method="post">
+                <div class="input-group">
+                    <input type="search" name="id" class="form-control rounded" placeholder="Search by ID" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-outline-primary">search</button>
+                </div>
+                </form>
+                <div class="table-wrap">
+                    <table class="table p-3 mb-2 bg-light text-dark rounded">
+                        <thead class="thead-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>Dishes</th>
+                            <th> </th>
+                            <th> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${orders}" th:object="${order}">
+                            <th th:text="*{id}"></th>
+                            <th th:text="*{user.email}"></th>
+                            <th th:text="*{status}"></th>
+                            <th>
+                                <ul th:each="dish : ${order.dishes}" th:object="${dish}">
+                                    <li th:text="${dish.name}"></li>
+                                </ul>
+                            </th>
+                            <td><a th:href="@{/orders/accept/{id}(id=${order.id})}" class="btn btn-success">Accept</a></td>
+                            <td><a th:href="@{/orders/delete/{id}(id=${order.id})}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

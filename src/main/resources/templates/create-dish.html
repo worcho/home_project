@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:include="fragments/head"></th:block>
+<body style="background-image: url('https://thumbs.dreamstime.com/b/greek-food-background-traditional-different-greek-dishes-set-greek-food-background-traditional-different-greek-dishes-set-top-view-178761927.jpg');
+            background-repeat:no-repeat;
+            background-size:100% 100vh;">
+<th:block th:include="fragments/navbar"></th:block>
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-success text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="">
+                            <h2 class="fw-bold mb-2 text-uppercase">Create</h2>
+                            <p class="text-white-50 mb-5">new dish</p>
+                            <form th:action="@{/dishes/create}" th:method="post">
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" name="name" id="typeNameX" class="form-control form-control-lg" placeholder="Name" />
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <textarea style="resize: none;" class="form-control" id="typeDescriptiontX" name="description" rows="3" placeholder="Description"></textarea>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" name="url" id="typeURLX" class="form-control form-control-lg" placeholder="Url"/>
+                                </div>
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
