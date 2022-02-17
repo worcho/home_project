@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import root.demo.models.binding.UserEditBindingModel;
 import root.demo.models.binding.UserRegisterBindingModel;
 import root.demo.services.UserService;
-
 import javax.validation.Valid;
 
 @Controller

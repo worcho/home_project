@@ -1,10 +1,6 @@
 package root.demo.models.binding;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 public class UserEditBindingModel {
-
 
     private String firstName;
     private String lastName;

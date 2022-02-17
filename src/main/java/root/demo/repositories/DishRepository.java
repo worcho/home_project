@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import root.demo.entities.Dish;
-import root.demo.entities.DishFromRestaurant;
 
 import java.util.List;
 

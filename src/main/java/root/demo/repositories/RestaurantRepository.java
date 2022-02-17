@@ -5,12 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import root.demo.entities.Dish;
-import root.demo.entities.DishFromRestaurant;
 import root.demo.entities.Restaurant;
-import root.demo.models.service.DishForUserServiceModel;
-
-import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
@@ -27,10 +22,4 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
             , nativeQuery = true)
     void deleteAllDishFromRestaurant(Long id);
 
-    @Query(value = "select name, description, url\n" +
-            "from dish\n" +
-            "join dish_restaurant on dish.dish_id = dish_restaurant.dish_id\n" +
-            "where dish_restaurant.restaurant_id = ?1"
-            , nativeQuery = true)
-    List<DishFromRestaurant> getAllDishesFromRestaurant(Long id);
 }

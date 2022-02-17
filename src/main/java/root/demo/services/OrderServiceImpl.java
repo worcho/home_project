@@ -11,14 +11,13 @@ import root.demo.models.service.OrderServiceModel;
 import root.demo.repositories.DishRepository;
 import root.demo.repositories.OrderRepository;
 import root.demo.repositories.UserRepository;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
@@ -52,14 +51,13 @@ public class OrderServiceImpl implements OrderService{
                     return dish1;
                 }).collect(Collectors.toList()));
         orderRepository.save(order);
-
     }
 
     @Override
     public List<MyOrdesServiceModel> getAllMyOrders(String email) {
         return orderRepository.findByEmail(email)
                 .stream()
-                .map(orders -> modelMapper.map(orders,MyOrdesServiceModel.class))
+                .map(orders -> modelMapper.map(orders, MyOrdesServiceModel.class))
                 .collect(Collectors.toList());
     }
 
@@ -67,7 +65,7 @@ public class OrderServiceImpl implements OrderService{
     public List<DishServiceModel> getAllDishesFromMyOrders(Long id) {
         return dishRepository.getAllDishesFromMyOrders(id)
                 .stream()
-                .map(o -> modelMapper.map(o,DishServiceModel.class))
+                .map(o -> modelMapper.map(o, DishServiceModel.class))
                 .collect(Collectors.toList());
     }
 
@@ -75,13 +73,13 @@ public class OrderServiceImpl implements OrderService{
     public List<OrderServiceModel> getAllOrders() {
         return orderRepository.findAll()
                 .stream()
-                .map(orders -> modelMapper.map(orders,OrderServiceModel.class))
+                .map(orders -> modelMapper.map(orders, OrderServiceModel.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public OrderServiceModel getById(Long id) {
-        return modelMapper.map(orderRepository.getById(id),OrderServiceModel.class);
+        return modelMapper.map(orderRepository.getById(id), OrderServiceModel.class);
     }
 
     @Override

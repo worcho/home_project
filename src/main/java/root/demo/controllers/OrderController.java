@@ -6,18 +6,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import root.demo.entities.Dish;
-import root.demo.entities.Orders;
 import root.demo.models.binding.OrderCreationBindingModel;
 import root.demo.models.binding.SearchOrderBindingModel;
-import root.demo.models.service.MyOrdesServiceModel;
 import root.demo.models.service.OrderServiceModel;
 import root.demo.services.OrderService;
-
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 public class OrderController {

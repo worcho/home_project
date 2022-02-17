@@ -12,7 +12,7 @@ import root.demo.services.DishService;
 @Controller
 public class DishController {
 
-    Long idForEditting;
+    Long idForEditing;
 
     private final DishService dishService;
 
@@ -49,7 +49,7 @@ public class DishController {
 
     @GetMapping("/dishes/edit/{id}")
     ModelAndView editDishes(ModelAndView modelAndView, @PathVariable Long id){
-        idForEditting = id;
+        idForEditing = id;
         modelAndView.addObject("currentDish", dishService.findDishById(id));
         modelAndView.setViewName("edit-dish");
         return modelAndView;
@@ -57,7 +57,7 @@ public class DishController {
 
     @PostMapping("/dishes/edit")
     ModelAndView confirmEditDishes(ModelAndView modelAndView, @ModelAttribute DishCreationBindingModel dishCreationBindingModel){
-        dishService.editDish(dishCreationBindingModel, idForEditting);
+        dishService.editDish(dishCreationBindingModel, idForEditing);
         modelAndView.setViewName("redirect:/dishes");
         return modelAndView;
     }

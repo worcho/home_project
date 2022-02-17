@@ -1,13 +1,11 @@
 package root.demo.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import root.demo.entities.Dish;
 import root.demo.models.binding.AddDishesToRestaurantModel;
 import root.demo.models.binding.RestaurantCreationBindingModel;
 import root.demo.services.DishService;
@@ -20,12 +18,10 @@ public class RestaurantsController {
 
     private final RestaurantService restaurantService;
     private final DishService dishService;
-    private final ModelMapper modelMapper;
 
-    public RestaurantsController(RestaurantService restaurantService, DishService dishService, ModelMapper modelMapper) {
+    public RestaurantsController(RestaurantService restaurantService, DishService dishService) {
         this.restaurantService = restaurantService;
         this.dishService = dishService;
-        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/restaurants")

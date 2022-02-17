@@ -31,3 +31,7 @@ h2 {
   margin-top: 2px;
   color: #8cba51;
   position: relative; }
+
+  .clicked {
+    background-color: #F88B8B;
+  }

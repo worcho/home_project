@@ -8,7 +8,7 @@
 <div class="container py-5">
     <div class="row text-center text-white mb-5">
         <div class="col-lg-7 mx-auto">
-            <h1 class="display-4">Restaurants</h1>
+            <h1 class="display-4" style="color:black">Chose Dishes</h1>
         </div>
     </div>
     <div class="row">
@@ -16,7 +16,7 @@
             <form th:action="@{/order/create}" th:method="post">
             <ul class="list-group shadow" th:each="dish : ${dishes}" th:object="${dish}">
                 <div onclick="this.querySelector('input[type=checkbox]').click()">
-                    <input type="checkbox" style="pointer-events:none" th:value="${dish.id}" name="id">
+                    <input type="checkbox" style="display:none" th:value="${dish.id}" name="id">
                     <li class="list-group-item" id="myCheck">
                         <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                             <div class="media-body order-2 order-lg-1">

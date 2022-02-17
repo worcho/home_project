@@ -10,7 +10,6 @@ import root.demo.models.service.DishForUserServiceModel;
 import root.demo.models.service.RestaurantServiceModel;
 import root.demo.repositories.DishRepository;
 import root.demo.repositories.RestaurantRepository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,13 +18,11 @@ import java.util.stream.Collectors;
 public class RestaurantServiceImpl implements RestaurantService{
 
     private final RestaurantRepository restaurantRepository;
-    private final DishRepository dishRepository;
     private final DishService dishService;
     private final ModelMapper modelMapper;
 
-    public RestaurantServiceImpl(RestaurantRepository restaurantRepository, DishRepository dishRepository, DishService dishService, ModelMapper modelMapper) {
+    public RestaurantServiceImpl(RestaurantRepository restaurantRepository, DishService dishService, ModelMapper modelMapper) {
         this.restaurantRepository = restaurantRepository;
-        this.dishRepository = dishRepository;
         this.dishService = dishService;
         this.modelMapper = modelMapper;
     }
@@ -66,14 +63,6 @@ public class RestaurantServiceImpl implements RestaurantService{
         RestaurantServiceModel model = modelMapper.map(this.restaurantRepository.findById(id).get(),RestaurantServiceModel.class);
 
         return model;
-    }
-
-    @Override
-    public List<DishForUserServiceModel> getAllDishesFromRestaurant(Long id) {
-        return restaurantRepository.getAllDishesFromRestaurant(id)
-                .stream()
-                .map(dish -> modelMapper.map(dish, DishForUserServiceModel.class))
-                .collect(Collectors.toList());
     }
 
     @Override

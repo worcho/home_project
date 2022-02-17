@@ -8,12 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import root.demo.entities.Orders;
 import root.demo.entities.User;
 import root.demo.models.binding.UserEditBindingModel;
 import root.demo.models.binding.UserRegisterBindingModel;
 import root.demo.models.service.UserServiceModel;
+import root.demo.repositories.OrderRepository;
 import root.demo.repositories.UserRepository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,11 +28,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final OrderRepository orderRepository;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, OrderRepository orderRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.orderRepository = orderRepository;
     }
 
     @Override
@@ -42,6 +47,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void deleteUser(String id) {
+        List<Orders> ids = orderRepository.findByEmail(id);
+        ArrayList<Long> list = new ArrayList<>();
+        for (int i = 0; i < ids.size(); i++) {
+            list.add(ids.get(i).getId());
+        }
+        for (int i = 0; i < list.size(); i++) {
+            orderRepository.deleteFromOrderDish(list.get(i));
+        }
+        for (int i = 0; i < list.size(); i++) {
+            orderRepository.deleteFromOrders(list.get(i));
+        }
         userRepository.deleteById(id);
     }
 
@@ -95,7 +111,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 user.getPassword(),
                 roles
         );
-
         return userDetails;
     }
 }

@@ -2,7 +2,6 @@ package root.demo.services;
 
 import root.demo.models.binding.AddDishesToRestaurantModel;
 import root.demo.models.binding.RestaurantCreationBindingModel;
-import root.demo.models.service.DishForUserServiceModel;
 import root.demo.models.service.RestaurantServiceModel;
 
 import java.util.List;
@@ -18,8 +17,6 @@ public interface RestaurantService {
     List<RestaurantServiceModel> getAllRestaurant();
 
     RestaurantServiceModel getRestaurantById(Long id);
-
-    List<DishForUserServiceModel> getAllDishesFromRestaurant(Long id);
 
     void addDishesToRestaurant(AddDishesToRestaurantModel model, Long id);
 
